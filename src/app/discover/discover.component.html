@@ -1,0 +1,12 @@
+<span *ngIf="movies" class="row h-100" style="overflow: hidden; ">
+    <!--<p>Total Results "{{movies.total_results}}"</p>-->
+    <div *ngFor="let movie of movies.results; index as i" class="col-sm-3">
+      <div class="card">
+        <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" class="card-img-top" alt="{{movie.original_title}}">
+        <div class="card-body">
+          <p class="card-text">{{movie.overview| slice:0:150}}</p>
+        </div>
+      </div>
+    </div>
+
+  </span>
