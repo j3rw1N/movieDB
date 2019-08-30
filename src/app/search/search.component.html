@@ -1,0 +1,18 @@
+<span *ngIf="results" style="overflow: hidden; ">
+  {{setTitle()}}
+
+  <h1>Found {{results.total_results}} results</h1>
+  <div class="list-group">
+    <div *ngFor="let movie of results.results; index as i" >
+      <a [routerLink]="['/movie', movie.id]" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="row">
+          <div class="col-sm-4"><img src="https://image.tmdb.org/t/p/w185{{movie.poster_path}}" alt="{{movie.original_title}}"> </div>
+          <div class="col-sm-8">
+            <div class="row">{{movie.original_title}}</div>
+            <div class="row">{{movie.overview}}</div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</span>

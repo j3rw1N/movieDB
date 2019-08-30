@@ -1,0 +1,9 @@
+<span *ngIf="movie" style="overflow: hidden; ">{{setTitle(movie.original_title)}}
+  <div class="row">
+    <div class="col-6"><img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}"> </div>
+    <div class="col-6">
+      <div class="row">{{movie.original_title}}</div>
+      <div class="row">{{movie.overview}}</div>
+    </div>
+  </div>
+</span>
