@@ -1,11 +1,14 @@
 <span *ngIf="movies" class="row h-100" style="overflow: hidden; ">
     <!--<p>Total Results "{{movies.total_results}}"</p>-->
     <div *ngFor="let movie of movies.results; index as i" class="col-sm-3">
-      <div class="card">
-        <a [title]="movie.original_title" [routerLink]="['/movie',movie.id]" ><img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" class="card-img-top" alt="{{movie.original_title}}"></a>
-        <div class="card-body">
-          <p class="card-text">{{movie.overview| slice:0:150}}</p>
-        </div>
+      <div class="card content">
+        <a [title]="movie.original_title" [routerLink]="['/movie',movie.id]" >
+          <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" class="card-img-top content-image" alt="{{movie.original_title}}">
+          <div class="content-details fadeIn-bottom">
+            <h3 class="content-title">{{movie.original_title}}</h3>
+            <p class="content-text">{{movie.vote_average}}/10</p>
+          </div>
+        </a>
       </div>
     </div>
 

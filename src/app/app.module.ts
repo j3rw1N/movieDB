@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-import { BrowserModule, Title }  from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 const appRoutes: Routes = [
   { path: '', component: DiscoverComponent },
   { path: 'movie/:id',      component: MovieDetailsComponent },
-  { path: 'search/:query', component: SearchComponent}
+  { path: 'search/:query/:page', component: SearchComponent}
 ];
 
 
@@ -29,9 +30,11 @@ import { SearchComponent } from './search/search.component';
   imports: [
     BrowserModule,
     HttpClientModule,
+    NgbModule,
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      {enableTracing: true,
+        scrollPositionRestoration: 'enabled'} // <-- debugging purposes only
     )
   ],
   providers: [

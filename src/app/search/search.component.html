@@ -6,13 +6,20 @@
     <div *ngFor="let movie of results.results; index as i" >
       <a [routerLink]="['/movie', movie.id]" class="list-group-item list-group-item-action flex-column align-items-start">
         <div class="row">
-          <div class="col-sm-4"><img src="https://image.tmdb.org/t/p/w185{{movie.poster_path}}" alt="{{movie.original_title}}"> </div>
+          <div class="col-sm-4">
+
+
+                <img class="" src="https://image.tmdb.org/t/p/w185{{movie.poster_path}}" alt="{{movie.original_title}}">
+
+
+          </div>
           <div class="col-sm-8">
-            <div class="row">{{movie.original_title}}</div>
-            <div class="row">{{movie.overview}}</div>
+            <h3 class="row">{{movie.original_title}}</h3>
+            <div class="row">{{movie.overview| slice:0:250}}</div>
           </div>
         </div>
       </a>
     </div>
   </div>
+  <ngb-pagination (pageChange)="pageChanged($event)" pageSize="20" [collectionSize]="results.total_results" [(page)]="results.page" [maxSize]="5" [rotate]="true" aria-label="Default pagination"></ngb-pagination>
 </span>
