@@ -7,7 +7,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 const appRoutes: Routes = [
   { path: '', component: DiscoverComponent },
   { path: 'movie/:id',      component: MovieDetailsComponent },
-  { path: 'search/:query/:page', component: SearchComponent}
+  { path: 'search/:query/:page', component: SearchComponent},
+  { path: 'favourites/:page', component: FavouritesComponent}
 ];
 
 
@@ -17,6 +18,7 @@ import { FooterComponent } from './footer/footer.component';
 import { DiscoverComponent } from './discover/discover.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { SearchComponent } from './search/search.component';
+import { FavouritesComponent } from './favourites/favourites.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { SearchComponent } from './search/search.component';
     FooterComponent,
     DiscoverComponent,
     MovieDetailsComponent,
-    SearchComponent
+    SearchComponent,
+    FavouritesComponent
   ],
   imports: [
     BrowserModule,

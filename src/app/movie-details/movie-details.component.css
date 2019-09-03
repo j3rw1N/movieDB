@@ -3,3 +3,34 @@
   height: auto;
   max-width: 100%;
 }
+
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:200,300');
+
+.bgimg {
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background: #333 url('https://image.tmdb.org/t/p/original/1TUg5pO1VZ4B0Q1amk3OlXvlpXV.jpg') no-repeat fixed center center;
+  font-family: 'Open Sans',Arial,Helvetica,Sans-Serif;
+}
+
+.gg {
+  -webkit-filter: initial;
+  filter: initial;
+}
+
+.checked {
+  color: orange;
+}
+
+
+
+
+
+.blur {
+  -webkit-filter: blur(5px) grayscale(50%);
+}
+

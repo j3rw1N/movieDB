@@ -9,15 +9,78 @@
   <div class="jumbotron">
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 gg">
                 <img class="resp-poster" src="https://image.tmdb.org/t/p/w300{{movie.poster_path}}">
             </div>
             <div class="col-md-8">
-              <div class="row"><h3>{{movie.original_title}} ({{movie.release_date| slice: 0:4}})</h3></div>
+
+              <div class="row"><h2>{{movie.original_title}} ({{movie.release_date| slice: 0:4}})</h2>
+                <span *ngIf="isFav; else elseBlock"><a [routerLink]="" (click)="!!deleteFromFav()"><i class="fa fa-heart fa-2x"  ></i></a></span>
+                <ng-template #elseBlock><a [routerLink]="" (click)="!!addToFav()"><i class="fa fa-heart-o fa-2x"  ></i></a></ng-template>
+              </div>
+
+              <div class="row">
+              <div *ngIf="movie.vote_average > 1; else elseBlock1"><span class="fa fa-star checked"></span></div>
+                <ng-template #elseBlock1><div><span class="fa fa-star"></span></div></ng-template>
+              <div *ngIf="movie.vote_average > 2; else elseBlock2"><span class="fa fa-star checked"></span></div>
+                <ng-template #elseBlock2><div><span class="fa fa-star"></span></div></ng-template>
+              <div *ngIf="movie.vote_average > 3; else elseBlock3"><span class="fa fa-star checked"></span></div>
+                <ng-template #elseBlock3><div><span class="fa fa-star"></span></div></ng-template>
+              <div *ngIf="movie.vote_average > 4; else elseBlock4"><span class="fa fa-star checked"></span></div>
+                <ng-template #elseBlock4><div><span class="fa fa-star"></span></div></ng-template>
+              <div *ngIf="movie.vote_average > 5; else elseBlock5"><span class="fa fa-star checked"></span></div>
+                <ng-template #elseBlock5><span class="fa fa-star"></span></ng-template>
+              <div *ngIf="movie.vote_average > 6; else elseBlock6"><span class="fa fa-star checked"></span></div>
+                <ng-template #elseBlock6><div><span class="fa fa-star"></span></div></ng-template>
+              <div *ngIf="movie.vote_average > 7; else elseBlock7"><span class="fa fa-star checked"></span></div>
+                <ng-template #elseBlock7><div><span class="fa fa-star"></span></div></ng-template>
+              <div *ngIf="movie.vote_average > 8; else elseBlock8"><span class="fa fa-star checked"></span></div>
+                <ng-template #elseBlock8><div><span class="fa fa-star"></span></div></ng-template>
+              <div *ngIf="movie.vote_average > 9; else elseBlock9"><span class="fa fa-star checked"></span></div>
+                <ng-template #elseBlock9><div><span class="fa fa-star"></span></div></ng-template>
+              <div *ngIf="movie.vote_average == 10; else elseBlock0"><span class="fa fa-star checked"></span></div>
+                <ng-template #elseBlock0><div><span class="fa fa-star"></span></div></ng-template>({{movie.vote_average}}/10)
+              </div>
+
+
+              <h6 class="row>">Overview</h6>
               <div class="row>">{{movie.overview}}</div>
             </div>
         </div>
       </div>
 
+  </div>
+  <div class="container">
+    <!--<div class="row">
+      <h2>Comments</h2>
+    </div>
+    <div class="row">cheuycgurgu</div>
+  </div>-->
+    <h2 class="text-center">Comments</h2>
+
+	<div class="card">
+	    <div class="card-body">
+        <ul>
+	        <li *ngFor="let comment of comments; index as i"  class="row rounded-bottom">
+        	    <div class="col">
+        	       <div class="clearfix"></div>
+        	        <p>{{comment.comment}}</p>
+        	        <p>
+        	            <a class="float-right btn btn-outline-primary ml-2">Edit</a>
+                      <a class="float-right btn text-white btn-danger" (click)="delComment(comment.id)">Delete</a>
+        	       </p>
+              </div>
+          </li>
+          <li class="row">
+              <div class="col">
+                   <div class="clearfix"></div>
+                    <label >New Comment</label>
+                    <textarea class="form-control"  #newComm  rows="3"></textarea>
+                    <a class="float-right btn btn-outline-primary ml-2" (click)="!!addComment(newComm.value)">  Post </a>
+                </div>
+            </li>
+        </ul>
+      </div>
+	</div>
   </div>
 </span>

@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-
-
-import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
 
@@ -12,36 +8,48 @@ import { catchError, retry } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class MovieDetailsService {
+
+  private apiEndPoint: any;
+
   constructor(private http: HttpClient) { }
-  getConfig(movID) {
-    return this.http.get(movID)
+
+  getMovieDetails(movieID) {
+    return this.http.get(movieID)
       .pipe(
         retry(3), // retry a failed request up to 3 times
-        catchError(this.handleError) // then handle the error
       );
 
   }
 
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error.message);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
-    }
-    // return an observable with a user-facing error message
-    return throwError(
-      'Something bad happened; please try again later.');
-  };
-
-  makeIntentionalError() {
-    return this.http.get('not/a/real/url')
+  getComments(movieID) {
+    this.apiEndPoint = 'http://localhost:3000/comments?movieID=' + movieID;
+    return this.http.get(this.apiEndPoint)
       .pipe(
-        catchError(this.handleError)
+        retry(3), // retry a failed request up to 3 times
+      );
+  }
+
+  postComment(movieID, comment) {
+    this.apiEndPoint = 'http://localhost:3000/comments';
+    return this.http.post(this.apiEndPoint, comment)
+      .pipe(
+        retry(3), // retry a failed request up to 3 times
+      );
+  }
+
+  editComment(movieID, commentID, comment) {
+    this.apiEndPoint = 'http://localhost:3000/movies/' + movieID + '/comments/' + commentID;
+    return this.http.put(this.apiEndPoint, comment)
+      .pipe(
+        retry(3), // retry a failed request up to 3 times
+      );
+  }
+
+  deleteComment(commentID) {
+    this.apiEndPoint = 'http://localhost:3000/comments/' + commentID;
+    return this.http.delete(this.apiEndPoint)
+      .pipe(
+        retry(3), // retry a failed request up to 3 times
       );
   }
 

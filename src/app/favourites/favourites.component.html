@@ -1,0 +1,24 @@
+<span *ngIf="results" style="overflow: hidden; ">
+
+  <h1>Found {{total_count}} results</h1>
+  <div class="list-group">
+    <div *ngFor="let movie of results; index as i" >
+      <a [routerLink]="['/movie', movie.id]" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="row">
+          <div class="col-sm-4">
+
+
+                <img class="" src="https://image.tmdb.org/t/p/w185{{movie.poster_path}}" alt="{{movie.original_title}}">
+
+
+          </div>
+          <div class="col-sm-8">
+            <h3 class="row">{{movie.original_title}}</h3>
+            <div class="row">{{movie.overview| slice:0:250}}</div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <ngb-pagination (pageChange)="pageChanged($event)" pageSize="10" [collectionSize]="total_count" [(page)]="page" [maxSize]="5" [rotate]="true" aria-label="Default pagination"></ngb-pagination>
+</span>

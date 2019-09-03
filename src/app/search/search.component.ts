@@ -1,9 +1,8 @@
 import {Component, Injectable, OnInit} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import {SearchService} from './search.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -19,7 +18,10 @@ export class SearchComponent implements OnInit {
   page: any;
 
   constructor(
-    private route: ActivatedRoute, private searchService: SearchService, private titleService: Title, private router: Router
+    private route: ActivatedRoute,
+    private searchService: SearchService,
+    private titleService: Title,
+    private router: Router
   ) { }
 
   searchMovie(query) {
