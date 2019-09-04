@@ -5,16 +5,18 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
-export interface Movies {}
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class DiscoverService {
+  Movies: any;
+  // tslint:disable-next-line:max-line-length
   configUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=6f805b75b38620ddbeab2da1b2db1b69&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1';
   constructor(private http: HttpClient) { }
   getConfig() {
-    return this.http.get<Movies>(this.configUrl)
+    return this.http.get(this.configUrl)
       .pipe(
         retry(3), // retry a failed request up to 3 times
         catchError(this.handleError) // then handle the error
@@ -36,13 +38,6 @@ export class DiscoverService {
     // return an observable with a user-facing error message
     return throwError(
       'Something bad happened; please try again later.');
-  };
-
-  makeIntentionalError() {
-    return this.http.get('not/a/real/url')
-      .pipe(
-        catchError(this.handleError)
-      );
   }
 
 }

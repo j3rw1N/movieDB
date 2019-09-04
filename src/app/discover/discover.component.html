@@ -1,6 +1,5 @@
 <span *ngIf="movies" class="row h-100" style="overflow: hidden; ">
-    <!--<p>Total Results "{{movies.total_results}}"</p>-->
-    <div *ngFor="let movie of movies.results; index as i" class="col-sm-3">
+    <section *ngFor="let movie of movies.results; index as i" class="col-sm-3">
       <div class="card content">
         <a [title]="movie.original_title" [routerLink]="['/movie',movie.id]" >
           <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" class="card-img-top content-image" alt="{{movie.original_title}}">
@@ -10,6 +9,5 @@
           </div>
         </a>
       </div>
-    </div>
-
+    </section>
   </span>

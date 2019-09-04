@@ -8,7 +8,8 @@ const appRoutes: Routes = [
   { path: '', component: DiscoverComponent },
   { path: 'movie/:id',      component: MovieDetailsComponent },
   { path: 'search/:query/:page', component: SearchComponent},
-  { path: 'favourites/:page', component: FavouritesComponent}
+  { path: 'favourites/:page', component: FavouritesComponent},
+  { path: '**', component: Four04Component}
 ];
 
 
@@ -20,6 +21,7 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { SearchComponent } from './search/search.component';
 import { FavouritesComponent } from './favourites/favourites.component';
 import {FormsModule} from '@angular/forms';
+import { Four04Component } from './four04/four04.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import {FormsModule} from '@angular/forms';
     DiscoverComponent,
     MovieDetailsComponent,
     SearchComponent,
-    FavouritesComponent
+    FavouritesComponent,
+    Four04Component
   ],
   imports: [
     BrowserModule,

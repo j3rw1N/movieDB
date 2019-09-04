@@ -1,11 +1,5 @@
 <span *ngIf="movie" style="overflow: hidden; ">{{setTitle(movie.original_title)}}
-  <!--<div class="row">
-    <div class="col-6"><img src="https://image.tmdb.org/t/p/w300{{movie.poster_path}}"> </div>
-    <div class="col-6">
-      <div class="row">{{movie.original_title}}</div>
-      <div class="row">{{movie.overview}}</div>
-    </div>
-  </div>-->
+
   <div class="jumbotron">
     <div class="container">
         <div class="row">
@@ -71,7 +65,7 @@
                       <div class="clearfix"></div>
                         <label >New Comment</label>
                         <textarea class="form-control" [(ngModel)]="addComm"  #newComm  rows="3"></textarea>
-                        <a class="float-right btn btn-outline-primary ml-2" (click)="!!addComment(newComm.value)">  Post </a>
+                        <a class="float-right btn btn-outline-primary ml-2" (click)="addComment(newComm.value)">  Post </a>
                     </span>
                     <ng-template #commElseBlock>
                       <div class="clearfix"></div>

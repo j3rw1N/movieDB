@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Movies, DiscoverService} from './discover.service';
+import {DiscoverService} from './discover.service';
 
 @Component({
   selector: 'app-discover',
@@ -10,12 +10,12 @@ import {Movies, DiscoverService} from './discover.service';
 export class DiscoverComponent implements OnInit {
   error: any;
   headers: string[];
-  movies: Movies;
+  movies: any;
   constructor(private discoverService: DiscoverService) { }
   showConfig() {
     this.discoverService.getConfig()
       .subscribe(
-        (data: Movies) => this.movies = { ...data }, // success path
+        (data) => this.movies = { ...data }, // success path
         error => this.error = error // error path
       );
   }

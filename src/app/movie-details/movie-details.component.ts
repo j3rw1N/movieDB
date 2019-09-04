@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import {MovieDetailsService} from './movie-details.service';
 import { Title } from '@angular/platform-browser';
 import {FavouritesService} from '../favourites/favourites.service';
+import {fakeAsync} from '@angular/core/testing';
 
 @Component({
   selector: 'app-movie-details',
@@ -98,6 +99,7 @@ export class MovieDetailsComponent implements OnInit {
       .subscribe(
         (data) => {
           this.temp = data;
+          this.isEdit = false;
           this.getComments();
         },
         error => this.error = error
