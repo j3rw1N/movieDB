@@ -19,6 +19,7 @@ import { DiscoverComponent } from './discover/discover.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { SearchComponent } from './search/search.component';
 import { FavouritesComponent } from './favourites/favourites.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -36,9 +37,12 @@ import { FavouritesComponent } from './favourites/favourites.component';
     NgbModule,
     RouterModule.forRoot(
       appRoutes,
-      {enableTracing: true,
-        scrollPositionRestoration: 'enabled'} // <-- debugging purposes only
-    )
+      {
+        enableTracing: true,
+        scrollPositionRestoration: 'enabled'
+      } // <-- debugging purposes only
+    ),
+    FormsModule
   ],
   providers: [
     Title

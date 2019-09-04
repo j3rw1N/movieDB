@@ -37,8 +37,8 @@ export class MovieDetailsService {
       );
   }
 
-  editComment(movieID, commentID, comment) {
-    this.apiEndPoint = 'http://localhost:3000/movies/' + movieID + '/comments/' + commentID;
+  editComment(commentID, comment) {
+    this.apiEndPoint = 'http://localhost:3000/comments/' + commentID;
     return this.http.put(this.apiEndPoint, comment)
       .pipe(
         retry(3), // retry a failed request up to 3 times

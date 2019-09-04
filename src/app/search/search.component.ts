@@ -44,19 +44,19 @@ export class SearchComponent implements OnInit {
     this.router.navigateByUrl('/search/' + this.query + '/' + page);
   }
 
-  initfn() {
+  initFn() {
     this.route.paramMap.subscribe(params => {
       this.query = params.get('query');
       this.page = params.get('page');
     });
     // tslint:disable-next-line:max-line-length
-    this.qURL =  'https://api.themoviedb.org/3/search/movie?api_key=6f805b75b38620ddbeab2da1b2db1b69&language=en-US&page=' + this.page +'&include_adult=false&query='+this.query;
+    this.qURL =  'https://api.themoviedb.org/3/search/movie?api_key=6f805b75b38620ddbeab2da1b2db1b69&language=en-US&page=' + this.page + '&include_adult=false&query=' + this.query;
     this.searchMovie(this.qURL);
   }
 
   ngOnInit() {
     this.route.params.subscribe(routeParams => {
-      this.initfn();
+      this.initFn();
     });
   }
 

@@ -51,36 +51,39 @@
 
   </div>
   <div class="container">
-    <!--<div class="row">
-      <h2>Comments</h2>
-    </div>
-    <div class="row">cheuycgurgu</div>
-  </div>-->
     <h2 class="text-center">Comments</h2>
+      <div class="card">
+          <div class="card-body">
+            <ul>
+              <li *ngFor="let comment of comments; index as i"  class="row rounded-bottom">
+                  <div class="col">
+                     <div class="clearfix"></div>
+                      <p>{{comment.comment}}</p>
+                      <p>
+                          <a class="float-right btn btn-outline-primary ml-2" (click)="showEdit(comment.id, comment.comment)">Edit</a>
+                          <a class="float-right btn text-white btn-danger" (click)="delComment(comment.id)">Delete</a>
+                     </p>
+                  </div>
+              </li>
+              <li class="row">
+                  <div class="col">
+                    <span *ngIf="!isEdit; else commElseBlock">
+                      <div class="clearfix"></div>
+                        <label >New Comment</label>
+                        <textarea class="form-control" [(ngModel)]="addComm"  #newComm  rows="3"></textarea>
+                        <a class="float-right btn btn-outline-primary ml-2" (click)="!!addComment(newComm.value)">  Post </a>
+                    </span>
+                    <ng-template #commElseBlock>
+                      <div class="clearfix"></div>
+                        <label >Edit Comment</label>
+                        <textarea class="form-control" [(ngModel)]="editComm"  #editCommInp  rows="3"></textarea>
+                        <a class="float-right btn btn-outline-primary ml-2" (click)="editComment(editComm)">  Edit </a>
+                    </ng-template>
 
-	<div class="card">
-	    <div class="card-body">
-        <ul>
-	        <li *ngFor="let comment of comments; index as i"  class="row rounded-bottom">
-        	    <div class="col">
-        	       <div class="clearfix"></div>
-        	        <p>{{comment.comment}}</p>
-        	        <p>
-        	            <a class="float-right btn btn-outline-primary ml-2">Edit</a>
-                      <a class="float-right btn text-white btn-danger" (click)="delComment(comment.id)">Delete</a>
-        	       </p>
-              </div>
-          </li>
-          <li class="row">
-              <div class="col">
-                   <div class="clearfix"></div>
-                    <label >New Comment</label>
-                    <textarea class="form-control"  #newComm  rows="3"></textarea>
-                    <a class="float-right btn btn-outline-primary ml-2" (click)="!!addComment(newComm.value)">  Post </a>
-                </div>
-            </li>
-        </ul>
+                    </div>
+                </li>
+            </ul>
+          </div>
       </div>
-	</div>
   </div>
 </span>

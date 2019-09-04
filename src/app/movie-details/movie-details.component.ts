@@ -15,9 +15,14 @@ export class MovieDetailsComponent implements OnInit {
   movie: any;
   error: any;
   url: any;
+  temp: any;
   isFav: boolean;
+  isEdit: boolean;
   comments: any;
   comment: any;
+  addComm: any;
+  editComm: any;
+  editCommID: any;
   constructor(
     private route: ActivatedRoute,
     private movieDetailsService: MovieDetailsService,
@@ -34,13 +39,12 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   addToFav() {
-    console.log(this.movie);
     this.favoriteService.addToFav(this.movie)
       .subscribe(
         (data) => {
           this.isFav = true;
           }, // success path
-        error => this.error = error // error path
+        error => this.error = error
       );
   }
 
@@ -50,7 +54,7 @@ export class MovieDetailsComponent implements OnInit {
       (data) => {
         this.isFav = false;
       }, // success path
-      error => this.error = error // error path
+      error => this.error = error
     );
   }
 
@@ -60,7 +64,7 @@ export class MovieDetailsComponent implements OnInit {
         (data) => {
           this.isFav = data.body != '{}';
         }, // success path
-        error => this.error = error // error path
+        error => this.error = error
       );
   }
 
@@ -79,15 +83,46 @@ export class MovieDetailsComponent implements OnInit {
     };
     this.movieDetailsService.postComment(this.movieID, this.comment)
       .subscribe(
-        (data) => this.comments = data,
+        (data) => {
+            this.temp = data;
+            this.addComm = '';
+            this.getComments();
+          },
         error => this.error = error
       );
+
   }
 
   delComment(commentID) {
     this.movieDetailsService.deleteComment(commentID)
       .subscribe(
-        (data) => data,
+        (data) => {
+          this.temp = data;
+          this.getComments();
+        },
+        error => this.error = error
+      );
+
+  }
+
+  showEdit(commentID, comment) {
+    this.isEdit = true;
+    this.editCommID = commentID;
+    this.editComm = comment;
+  }
+
+  editComment(comment) {
+    this.comment = {
+      "movieID": this.movieID,
+      "comment": comment
+    };
+    this.movieDetailsService.editComment(this.editCommID, this.comment)
+      .subscribe(
+        (data) => {
+          this.temp = data;
+          this.isEdit = false;
+          this.getComments();
+        },
         error => this.error = error
       );
   }
@@ -101,6 +136,7 @@ export class MovieDetailsComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.movieID = params.get('id');
     });
+    this.isEdit = false;
     this.url =  'https://api.themoviedb.org/3/movie/' + this.movieID + '?api_key=6f805b75b38620ddbeab2da1b2db1b69&language=en-US';
     this.showMovieDetails(this.url);
     this.checkFav();
